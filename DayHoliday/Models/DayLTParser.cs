@@ -35,9 +35,10 @@ namespace DayHoliday.Models
             try
             {
                 // Find nodes.
-                foreach (HtmlNode node in doc.DocumentNode.SelectNodes("//span[@title='Šios dienos šventė']"))
+                HtmlNode node = doc.DocumentNode.SelectSingleNode("//p[@class='sventes']");
+                foreach (HtmlNode node2 in node.SelectNodes(".//span"))
                 {
-                    string holiday = node.InnerText;
+                    string holiday = node2.InnerText;
                     // Add parsed text.
                     holidays.Add(holiday);
                 }
